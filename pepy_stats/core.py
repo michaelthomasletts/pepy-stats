@@ -21,6 +21,8 @@ class Downloads:
         Fetches total downloads for the package from the PePy API.
     abbreviate(grain=1) -> str
         Abbreviates the total download count to a human-readable format.
+    badge(*args, **kwargs) -> dict
+        Generates a dictionary with the download statistics.
     """
 
     def __init__(self, api_key: str, package: str):
@@ -107,6 +109,21 @@ class Downloads:
             return str(downloads)
 
     def badge(self, *args, **kwargs) -> dict:
+        """Generates a dictionary with the download statistics.
+
+        Parameters
+        ----------
+        *args
+            Additional positional arguments passed to the `get` method
+        **kwargs
+            Additional keyword arguments passed to the `get` method
+
+        Returns
+        -------
+        dict
+            Dictionary containing the schema version, label, and message with download statistics
+        """
+
         try:
             downloads = self.get(*args, **kwargs)
             return {
