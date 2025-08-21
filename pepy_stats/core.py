@@ -2,6 +2,8 @@ from functools import cached_property
 
 import niquests
 
+LABEL = "Downloads"
+
 
 class Downloads:
     """Class to fetch and manage download statistics for a Python package from the PePy API.
@@ -20,7 +22,7 @@ class Downloads:
     abbreviate(grain=1) -> str
         Abbreviates the total download count to a human-readable format.
     """
-    
+
     def __init__(self, api_key: str, package: str):
         self.api_key: str = api_key
         self._package: str = package
@@ -45,7 +47,7 @@ class Downloads:
 
     def get(self, timeout: int = 10, abbreviate: bool = True, *args, **kwargs) -> str:
         """Gets total downloads for the package from the PePy API.
-        
+
         Parameters
         ----------
         timeout : int, optional
@@ -56,13 +58,13 @@ class Downloads:
             Additional positional arguments passed to the `abbreviate` method if `abbreviate` is True
         **kwargs
             Additional keyword arguments passed to the `abbreviate` method if `abbreviate` is True
-        
+
         Returns
         -------
         str
             Total downloads as a string, abbreviated if specified
         """
-        
+
         if not self.downloads.get("project", "") == self.package:
             response = niquests.get(self.url, headers=self.headers, timeout=timeout)
             response.raise_for_status()
@@ -75,23 +77,23 @@ class Downloads:
 
     def abbreviate(self, grain: int = 1) -> str:
         """Abbreviates the total download count to a human-readable format.
-        
+
         Parameters
         ----------
         grain : int, optional
             Number of decimal places to include in the abbreviation, by default 1
-        
+
         Returns
         -------
         str
             Abbreviated download count (e.g., 1.2K, 3.4M)
-        
+
         Raises
         ------
         ValueError
             If `grain` is not a non-negative integer
         """
-        
+
         if not isinstance(grain, int) or grain < 0:
             raise ValueError("grain must be a non-negative integer")
 
@@ -103,3 +105,19 @@ class Downloads:
             return f"{downloads / 1_000:.{grain}f}K"
         else:
             return str(downloads)
+
+    def badge(self, *args, **kwargs) -> dict:
+        try:
+            downloads = self.get(*args, **kwargs)
+            return {
+                "schemaVersion": 1,
+                "label": LABEL,
+                "message": downloads,
+            }
+        except Exception:
+            return {
+                "schemaVersion": 1,
+                "label": LABEL,
+                "message": "unavailable",
+                "isError": True,
+            }
