@@ -18,9 +18,9 @@ _\ /  /_|/  _\
 
 Unfortunately, [the badge offered by PePy](https://pepy.tech/projects/boto3-refresh-session?timeRange=threeMonths&category=version&includeCIDownloads=true&granularity=daily&viewType=line&versions=2.0.1%2C2.0.0%2C1.3.22) is not too customizable. :smirk: This is a bit irksome for me, as I enjoy customizing markdown documents with shields badges using consistent color and logos! :art:
 
-If anyone finds themselves in a similar predicament but doesn't feel like building their own mini-service for hosting downloads statistics themselves then then open an [issue](https://github.com/michaelthomasletts/pepy-stats/issues). I totally get it! :smiley: I'll happily add your Python package [here](https://github.com/michaelthomasletts/pepy-stats/blob/3846bac0cfbca8e072a4bf09795aea0ca4417c3c/script.py#L9). 
+If anyone finds themselves in a similar predicament but doesn't feel like building their own mini-service for hosting downloads statistics themselves then then open an [issue](https://github.com/michaelthomasletts/pepy-stats/issues). I totally get it! :smiley: I'll happily add your Python package [here](https://github.com/michaelthomasletts/pepy-stats/blob/3846bac0cfbca8e072a4bf09795aea0ca4417c3c/script.py#L9). If you like, open a pull request which updates that line with your Python package name!
 
-Statistics collected by this repository can be found at the following URL pattern:
+Statistics collected by this repository are published to a webpage, which can be found using the following URL pattern:
 
 `https://michaelthomasletts.github.io/pepy-stats/<package name>.json`.
 
