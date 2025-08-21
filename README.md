@@ -37,7 +37,7 @@ Which, using that code, returns a Shields badge like this:
 But with a little magic . . . 
 
 ```markdown
-[![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json&style=plastic&logo=python&labelColor=555&color=FF0000)](https://pepy.tech/projects/boto3-refresh-session)
+[![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json&style=social&logo=python&labelColor=555&color=FF0000)](https://pepy.tech/projects/boto3-refresh-session)
 ```
 
 We could get something like this!
