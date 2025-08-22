@@ -4,6 +4,7 @@ name: Bump version on main pushes
 on:
   push:
     branches: [ main ]
+    paths: [ pepy_stats/** ]
   workflow_dispatch:
 
 permissions:
