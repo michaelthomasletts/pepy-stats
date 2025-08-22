@@ -18,9 +18,33 @@ _\ /  /_|/  _\
 
 Unfortunately, [the badge offered by PePy](https://pepy.tech/projects/boto3-refresh-session?timeRange=threeMonths&category=version&includeCIDownloads=true&granularity=daily&viewType=line&versions=2.0.1%2C2.0.0%2C1.3.22) is not too customizable. And [Shield's badge](https://shields.io/badges) doesn't offer total downloads. Only daily, weekly, and monthly are available. :smirk: This is a bit irksome for me, as I enjoy customizing markdown documents with Shields badges using consistent color and logos! :art:
 
-If anyone finds themselves in a similar predicament but doesn't feel like building their own mini-service for hosting download statistics themselves then open an [issue](https://github.com/michaelthomasletts/pepy-stats/issues). I totally get it! :smiley: I'll happily add your Python package [here](https://github.com/michaelthomasletts/pepy-stats/blob/3846bac0cfbca8e072a4bf09795aea0ca4417c3c/script.py#L9). If you like, open a pull request which updates that line with your Python package name!
+## . . . Feeling lazy?
 
-Statistics collected by this repository are published to a webpage, which can be found using the following URL pattern:
+If anyone finds themselves in a similar predicament as me regarding the lack of badges that combine total downloads + customizability, but don't feel like building their own mini-service for hosting download statistics, then open an [issue](https://github.com/michaelthomasletts/pepy-stats/issues). I totally get it! :smiley: I'll happily add your Python package and host those statistics for you. If you like, open a pull request which updates the GitHub Actions workflow with your Python package name where the CLI is invoked! :sunglasses: 
+
+## Installation
+
+You may also install `pepy-stats` yourself using the following command if you prefer to host statistics yourself:
+
+```bash
+pip install "git+https://github.com/michaelthomasletts/pepy-stats.git"
+```
+
+## Usage
+
+`pepy-stats` includes a CLI! :sunglasses: Just install the package and you're good to go. In the below example, we pretend `abcd1234` is an API key for illustrative purposes.
+
+```bash
+# Fetch stats for one package
+pepy-stats boto3-refresh-session -k abcd1234
+
+# Multiple packages, custom folder, no abbreviation
+pepy-stats boto3-refresh-session uv requests -k abcd1234 -o ~/Desktop -no-a
+```
+
+## Badging
+
+The total download statistics collected by this repository are published to a webpage, which can be found using the below URL pattern. Of course, if you end up self-hosting then you'll need to change `michaelthomasletts`.
 
 `https://michaelthomasletts.github.io/pepy-stats/<package name>.json`.
 
@@ -40,8 +64,6 @@ But with a little magic . . .
 [![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json&style=social&logo=python&labelColor=555&color=FF0000)](https://pepy.tech/projects/boto3-refresh-session)
 ```
 
-We could get something like this!
+We could get something like this! :relieved:
 
 [![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json&style=social&logo=python&labelColor=555&color=FF0000)](https://pepy.tech/projects/boto3-refresh-session)
-
-Auf wiedersehen! :relieved:

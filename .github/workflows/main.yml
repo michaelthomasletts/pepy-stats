@@ -21,24 +21,33 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install deps
+      - name: Install pepy-stats CLI
         run: |
           python -m pip install --upgrade pip
-          pip install niquests
+          pip install "git+https://github.com/michaelthomasletts/pepy-stats.git"
 
       - name: Ensure stats dir
         run: mkdir -p stats
 
-      - name: Run stats script
+      - name: Run pepy-stats
         env:
           PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
-        run: python script.py
+        run: |
+          pepy-stats boto3-refresh-session laudanum profile-this -k "$PEPY_API_KEY"
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Bump version (minor) with Poetry
+        run: poetry version minor
 
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(stats): refresh Pepy badges"
-          file_pattern: "stats/*.json"
+          commit_message: "chore: refresh Pepy badges & bump version (minor)"
+          file_pattern: |
+            stats/*.json
+            pyproject.toml
 
       # Publish `stats/` as the site root
       - name: Configure Pages

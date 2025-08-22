@@ -1,0 +1,43 @@
+[project]
+name = "pepy-stats"
+version = "0.1.0"
+description = "A basic tool for fetching total download statistics from PePy for custom Shields badges. Runs daily. Statistics hosted by GitHub Pages."
+authors = [
+    {name = "Mike Letts",email = "lettsmt@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["cloup", "niquests"]
+
+
+[project.urls]
+repository = "https://github.com/michaelthomasletts/boto3-refresh-session"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 79
+target-version = ["py310"]
+quiet = true
+
+
+[tool.isort]
+line_length = 79
+ensure_newline_before_comments = true
+use_parentheses = true
+include_trailing_comma = true
+multi_line_output = 3
+
+
+[tool.poetry.scripts]
+pepy-stats = "pepy_stats.cli:main"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+isort = "^6.0.1"

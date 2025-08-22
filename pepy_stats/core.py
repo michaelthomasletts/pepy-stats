@@ -21,7 +21,7 @@ class Downloads:
         Fetches total downloads for the package from the PePy API.
     abbreviate(grain=1) -> str
         Abbreviates the total download count to a human-readable format.
-    badge(*args, **kwargs) -> dict
+    badge(label='Downloads', *args, **kwargs) -> dict
         Generates a dictionary with the download statistics.
     """
 
@@ -47,7 +47,9 @@ class Downloads:
     def url(self) -> str:
         return f"https://pepy.tech/api/v2/projects/{self.package}"
 
-    def get(self, timeout: int = 10, abbreviate: bool = True, *args, **kwargs) -> str:
+    def get(
+        self, timeout: int = 10, abbreviate: bool = True, *args, **kwargs
+    ) -> str:
         """Gets total downloads for the package from the PePy API.
 
         Parameters
@@ -68,7 +70,9 @@ class Downloads:
         """
 
         if not self.downloads.get("project", "") == self.package:
-            response = niquests.get(self.url, headers=self.headers, timeout=timeout)
+            response = niquests.get(
+                self.url, headers=self.headers, timeout=timeout
+            )
             response.raise_for_status()
             self.downloads = response.json()
         return (
@@ -99,7 +103,9 @@ class Downloads:
         if not isinstance(grain, int) or grain < 0:
             raise ValueError("grain must be a non-negative integer")
 
-        if (downloads := self.downloads.get("total_downloads", 0)) >= 1_000_000_000:
+        if (
+            downloads := self.downloads.get("total_downloads", 0)
+        ) >= 1_000_000_000:
             return f"{downloads / 1_000_000_000:.{grain}f}B"
         elif downloads >= 1_000_000:
             return f"{downloads / 1_000_000:.{grain}f}M"
@@ -108,11 +114,13 @@ class Downloads:
         else:
             return str(downloads)
 
-    def badge(self, *args, **kwargs) -> dict:
+    def badge(self, label: str | None = None, *args, **kwargs) -> dict:
         """Generates a dictionary with the download statistics.
 
         Parameters
         ----------
+        label : str
+            Label for the badge, default is 'Downloads'
         *args
             Additional positional arguments passed to the `get` method
         **kwargs
@@ -128,13 +136,13 @@ class Downloads:
             downloads = self.get(*args, **kwargs)
             return {
                 "schemaVersion": 1,
-                "label": LABEL,
+                "label": LABEL if label is None else label,
                 "message": downloads,
             }
         except Exception:
             return {
                 "schemaVersion": 1,
-                "label": LABEL,
+                "label": LABEL if label is None else label,
                 "message": "unavailable",
                 "isError": True,
             }
