@@ -1,6 +1,6 @@
 [project]
 name = "pepy-stats"
-version = "0.1.2"
+version = "0.1.3"
 description = "A basic tool for fetching total download statistics from PePy for custom Shields badges. Runs daily. Statistics hosted by GitHub Pages."
 authors = [{ name = "Mike Letts", email = "lettsmt@gmail.com" }]
 license = { text = "MIT" }
