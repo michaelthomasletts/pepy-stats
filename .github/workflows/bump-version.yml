@@ -29,20 +29,37 @@ jobs:
 
       - name: Bump patch version with Poetry
         run: |
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"   # ensure poetry on PATH
+          poetry --version
           echo "Before: $(poetry version --short || true)"
           poetry version patch
           echo "After:  $(poetry version --short || true)"
-          # Show whether pyproject.toml actually changed
           git status --porcelain
 
       - name: Commit & push pyproject.toml if changed
+        id: commit
         run: |
           if git diff --quiet -- pyproject.toml; then
-            echo "No version change detected; skipping commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No version change; skipping commit."
             exit 0
           fi
-          git config user.name "github-actions"
+          git config user.name  "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add pyproject.toml
           git commit -m "chore: bump version (patch)"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Tag version (no v prefix)
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          # Make sure we see existing tags before creating a new one
+          git fetch --tags --force
+          VER=$(poetry version --short)
+          if git rev-parse -q --verify "refs/tags/$VER" >/dev/null; then
+            echo "Tag $VER already exists; skipping."
+            exit 0
+          fi
+          git tag "$VER"
+          git push origin "$VER"
