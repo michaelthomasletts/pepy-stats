@@ -1,10 +1,10 @@
-# .github/workflows/update-and-publish.yml
+# .github/workflows/update-stats.yml
 name: Update package stats
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 8 * * *'   # daily 08:00 UTC
 
 permissions:
   contents: write
@@ -32,25 +32,11 @@ jobs:
         run: |
           pepy-stats boto3-refresh-session laudanum profile-this -k "$PEPY_API_KEY"
 
-      - name: Install Poetry 2.x and add to PATH
-        run: |
-          pipx install "poetry==2.*"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-
-      - name: Bump version (patch) with Poetry
-        run: |
-          poetry --version
-          echo "Before: $(poetry version --short || true)"
-          poetry version patch
-          echo "After:  $(poetry version --short || true)"
-
-      - name: Commit & push if changed
+      - name: Commit & push stats if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh Pepy badges & bump version (patch)"
-          file_pattern: |
-            stats/*.json
-            pyproject.toml
+          commit_message: "chore(stats): refresh PePy badges"
+          file_pattern: "stats/*.json"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -1,0 +1,48 @@
+# .github/workflows/bump-version.yml
+name: Bump version on main pushes
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    # Avoid infinite loop when the bot pushes the bump commit
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry 2.x and add to PATH
+        run: |
+          pipx install "poetry==2.*"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          poetry --version
+
+      - name: Bump patch version with Poetry
+        run: |
+          echo "Before: $(poetry version --short || true)"
+          poetry version patch
+          echo "After:  $(poetry version --short || true)"
+          # Show whether pyproject.toml actually changed
+          git status --porcelain
+
+      - name: Commit & push pyproject.toml if changed
+        run: |
+          if git diff --quiet -- pyproject.toml; then
+            echo "No version change detected; skipping commit."
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add pyproject.toml
+          git commit -m "chore: bump version (patch)"
+          git push
