@@ -26,30 +26,32 @@ jobs:
           python -m pip install --upgrade pip
           pip install "git+https://github.com/michaelthomasletts/pepy-stats.git"
 
-      - name: Ensure stats dir
-        run: mkdir -p stats
-
       - name: Run pepy-stats
         env:
           PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
         run: |
           pepy-stats boto3-refresh-session laudanum profile-this -k "$PEPY_API_KEY"
 
-      - name: Install Poetry
-        run: pipx install poetry
+      - name: Install Poetry 2.x and add to PATH
+        run: |
+          pipx install "poetry==2.*"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Bump version (minor) with Poetry
-        run: poetry version minor
+      - name: Bump version (patch) with Poetry
+        run: |
+          poetry --version
+          echo "Before: $(poetry version --short || true)"
+          poetry version patch
+          echo "After:  $(poetry version --short || true)"
 
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh Pepy badges & bump version (minor)"
+          commit_message: "chore: refresh Pepy badges & bump version (patch)"
           file_pattern: |
             stats/*.json
             pyproject.toml
 
-      # Publish `stats/` as the site root
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
