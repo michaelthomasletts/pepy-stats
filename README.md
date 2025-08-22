@@ -20,7 +20,7 @@ Unfortunately, [the badge offered by PePy](https://pepy.tech/projects/boto3-refr
 
 ## . . . Feeling lazy?
 
-If anyone finds themselves in a similar predicament as me regarding the lack of badges that combine total downloads + customizability, but don't feel like building their own mini-service for hosting download statistics, then open an [issue](https://github.com/michaelthomasletts/pepy-stats/issues). I totally get it! :smiley: I'll happily add your Python package and host those statistics for you. If you like, open a pull request which updates the GitHub Actions workflow with your Python package name where the CLI is invoked! :sunglasses: 
+If anyone finds themselves in a similar predicament as me regarding the lack of badges that combine total downloads + customizability, but don't feel like building their own mini-service for hosting download statistics, then open an [issue](https://github.com/michaelthomasletts/pepy-stats/issues). I totally get it! :smiley: I'll happily add your Python package and host those statistics for you. If you like, open a pull request which updates [this line](https://github.com/michaelthomasletts/pepy-stats/blob/eb48f0ac912d7f9aa8cbe33ae29754c001b0f714/.github/workflows/update-stats.yml#L33) with your package name in the CLI command! :sunglasses: 
 
 ## Installation
 
