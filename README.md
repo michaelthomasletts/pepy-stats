@@ -44,7 +44,9 @@ pepy-stats boto3-refresh-session uv requests -k abcd1234 -o ~/Desktop -no-a
 
 ## Badging
 
-The total download statistics collected by this repository are published to a webpage, which can be found using the below URL pattern. Of course, if you end up self-hosting then you'll need to change `michaelthomasletts`.
+So you successfully added your Python package(s) to this repository or installed the CLI and published some total download statistics to wherever you're hosting them. Great! But now what . . . ?
+
+Well, the total download statistics collected by _this_ repository are published to a webpage, which can be found using the below URL pattern.
 
 `https://michaelthomasletts.github.io/pepy-stats/<package name>.json`.
 
