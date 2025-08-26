@@ -11,7 +11,7 @@ _\ /  /_|/  _\
 
 `pepy-stats` is a repository that, on a daily schedule at approximately 8 AM UTC:
 
-- Fetches total download statistics from PePy for a few Python packages on PyPi, and
+- Fetches total download statistics from [PePy](https://pepy.tech/) for [a few Python packages on PyPi](https://pypi.org/user/lettsmt/), and
 - Publishes those statistics to various webpages [like this](https://michaelthomasletts.github.io/pepy-stats/boto3-refresh-session.json).
 
 **The purpose of this software is to make _customizable_ [Shields badges](https://shields.io/badges) possible with download statistics from PePy.**
