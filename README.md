@@ -16,7 +16,7 @@ _\ /  /_|/  _\
 
 **The purpose of this software is to make _customizable_ [Shields badges](https://shields.io/badges) possible with download statistics from PePy.**
 
-Unfortunately, [the badge offered by PePy](https://pepy.tech/projects/boto3-refresh-session?timeRange=threeMonths&category=version&includeCIDownloads=true&granularity=daily&viewType=line&versions=2.0.1%2C2.0.0%2C1.3.22) is not highly customizable. [Even after recent updates following a GitHub issue I opened](https://github.com/psincraian/pepy/issues/763#issuecomment-3222413682). And [Shield's badge](https://shields.io/badges) doesn't offer total downloads. Only daily, weekly, and monthly are available. :smirk: This is irksome for me, as I enjoy customizing markdown documents with Shields badges using consistent color and logos! :art:
+Unfortunately, [the badge offered by PePy](https://pepy.tech/projects/boto3-refresh-session?timeRange=threeMonths&category=version&includeCIDownloads=true&granularity=daily&viewType=line&versions=2.0.1%2C2.0.0%2C1.3.22) is not highly customizable. [Even after recent updates following a GitHub issue I opened](https://github.com/psincraian/pepy/issues/763#issuecomment-3222413682). And [Shield's badge](https://shields.io/badges) doesn't offer total downloads. Only daily, weekly, and monthly are available. :smirk: This is irksome for me, as I enjoy customizing markdown documents with Shields badges using consistent colors, styles, and logos! :art:
 
 ## . . . Feeling lazy?
 
