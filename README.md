@@ -50,17 +50,19 @@ Well, the total download statistics collected by _this_ repository are published
 
 `https://michaelthomasletts.github.io/pepy-stats/<package name>.json`.
 
-The markdown for creating a Shields badge using one of those URLs may look something like this:
+If you are self-hosting statistics then, of course, I cannot help you with what your URL pattern will look like 😬 . . . but I digress . . . 
+
+Anyway, the markdown for creating a Shields badge using one of those URLs may look something like this:
 
 ```markdown
 [![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json)](https://pepy.tech/projects/boto3-refresh-session)
 ```
 
-Which, using that code, returns a Shields badge like this:
+Which, using the above markdown code, returns a Shields badge like this:
 
 [![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json)](https://pepy.tech/projects/boto3-refresh-session)
 
-But with a little magic . . . 
+But with a little magic . . . 🪄
 
 ```markdown
 [![Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fmichaelthomasletts.github.io%2Fpepy-stats%2Fboto3-refresh-session.json&style=social&logo=python&labelColor=555&color=FF0000)](https://pepy.tech/projects/boto3-refresh-session)
