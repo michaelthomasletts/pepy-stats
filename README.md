@@ -24,11 +24,15 @@ If anyone finds themselves in a similar predicament as me regarding the lack of 
 
 ## Installation
 
-You may also install `pepy-stats` yourself using the following command if you prefer to host statistics yourself:
+You may also install `pepy-stats` yourself using the following command if you prefer to host statistics yourself!
+
+Here's how to install it from `git` directly:
 
 ```bash
 pip install "git+https://github.com/michaelthomasletts/pepy-stats.git"
 ```
+
+If you're wondering why this project isn't indexed on PyPi, that's because the name of this package is too similar to other projects already on PyPi! 😬 Sorry -- you will need to install it from `git` instead!
 
 ## Usage
 
