@@ -30,7 +30,7 @@ jobs:
         env:
           PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
         run: |
-          pepy-stats boto3-refresh-session laudanum profile-this -g 0 -k "$PEPY_API_KEY"
+          pepy-stats boto3-refresh-session boto3-client-cache laudanum profile-this -g 0 -k "$PEPY_API_KEY"
 
       - name: Commit & push stats if changed
         uses: stefanzweifel/git-auto-commit-action@v5
